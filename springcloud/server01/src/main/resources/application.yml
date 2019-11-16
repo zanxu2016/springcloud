@@ -1,0 +1,14 @@
+server:
+  port: 8301
+
+spring:
+  application:
+    name: server01  # 应用程序名称，后面会在消费者中用到
+
+eureka:
+  instance:
+    preferIpAddress: true # 访问路径是否显示IP
+    instance-id: ${spring.application.name}-${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka  # 注册中心 eureka 访问地址

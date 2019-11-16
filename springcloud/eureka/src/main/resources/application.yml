@@ -1,0 +1,19 @@
+# eureka 单机
+server:
+  port: 3000
+eureka:
+  instance:
+    hostname: eureka-center
+    appname: register-center
+    leaseExpirationDurationInSeconds: 90 # 清理未续约节点超时时间，默认90s
+  client:
+    registerWithEureka: false # 单点的时候设置为 false 禁止注册自身
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
+  server:
+    enableSelfPreservation: false # 自我保护机制
+    useReadOnlyResponseCache: true # Client 从 readOnlyCacheMap 更新数据，false 则跳过 readOnlyCacheMap 直接从readWriteCacheMap更新
+    evictionIntervalTimerInMs: 60000 # 清理未续约节点 (evict) 周期，默认60,000 ms
+    response-cache-update-interval-ms: 30000 # readWriteCacheMap 更新至 readOnlyCacheMap 周期，默认30,000 ms
+
