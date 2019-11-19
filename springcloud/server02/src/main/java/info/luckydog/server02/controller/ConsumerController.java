@@ -1,7 +1,5 @@
 package info.luckydog.server02.controller;
 
-import info.luckydog.server01.controller.User;
-import info.luckydog.server01.controller.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,14 +23,8 @@ public class ConsumerController {
     private UserService userService;
 
     @GetMapping("user")
-    public User getUser() {
+    public String getUser() {
         log.info("getUser from UserService...");
         return userService.getUser();
-    }
-
-    @GetMapping("users")
-    public List<User> getUsers() {
-        log.info("getUsers from UserService...");
-        return userService.getUsers();
     }
 }

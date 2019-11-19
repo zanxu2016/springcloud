@@ -1,6 +1,5 @@
 package info.luckydog.ribbon.controller;
 
-import info.luckydog.server01.controller.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class UserRibbonController {
     private String server01Url;
 
     @RequestMapping("user")
-    public ResponseEntity<User> getUser() {
-        return restTemplate.getForEntity(server01Url + "/user", User.class, new Object());
+    public ResponseEntity<String> getUser() {
+        return restTemplate.getForEntity(server01Url + "/user", String.class, new Object());
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @since 2019/11/8
  */
 @EnableEurekaClient
-@EnableFeignClients(basePackages = {"info.luckydog.server01.controller"})
+@EnableFeignClients
 @SpringBootApplication
 public class Server02Application {
     public static void main(String[] args) {

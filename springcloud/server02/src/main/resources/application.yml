@@ -12,3 +12,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:3000/eureka  # 注册中心 eureka 访问地址
+
+# 开启 hystrix 熔断器
+feign:
+  hystrix:
+    enabled: true

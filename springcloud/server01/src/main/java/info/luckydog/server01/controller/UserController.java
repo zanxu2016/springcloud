@@ -2,10 +2,8 @@ package info.luckydog.server01.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * UserController
@@ -15,18 +13,14 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-public class UserController implements UserService {
+public class UserController {
 
     @Value("#{applicationConfig.port}")
     private String port;
 
-    public User getUser() {
-        log.info("getUser...");
-        return new User(1L, "test " + port);
-    }
-
-    public List<User> getUsers() {
-        log.info("getUsers...");
-        return Arrays.asList(new User(1L, "test1"), new User(2L, "test2"));
+    @GetMapping(value = "user")
+    public String getUser() {
+        log.info("getUser at {}.", port);
+        return "get test user at " + port;
     }
 }
