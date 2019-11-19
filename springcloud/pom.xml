@@ -12,9 +12,7 @@
         <module>eureka</module>
         <module>server01</module>
         <module>server02</module>
-        <module>server03</module>
-        <module>server03</module>
-        <module>ribbon-service</module>
+        <module>ribbon</module>
     </modules>
 
     <dependencyManagement>

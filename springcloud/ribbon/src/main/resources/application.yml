@@ -2,7 +2,7 @@ server:
   port: 8303
 spring:
   application:
-    name: ribbon-service
+    name: ribbon
 eureka:
   instance:
     preferIpAddress: true # 访问路径是否显示IP
