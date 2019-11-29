@@ -4,6 +4,15 @@ server:
 spring:
   application:
     name: server01  # 应用程序名称，后面会在消费者中用到
+  # zipkin 链路追踪配置
+  zipkin:
+    base-url: http://localhost:9000
+  sleuth:
+    web:
+      client:
+        enabled: true # zipkin ui 展示需要
+    sampler:
+      probability: 1 #zipkin采样率，默认为0.1，改为1后全采样，但是会降低接口调用效率
 
 eureka:
   instance:

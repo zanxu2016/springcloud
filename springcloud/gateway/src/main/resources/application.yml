@@ -1,6 +1,13 @@
 server:
-  port: 8080
+  port: 5000
 spring:
+  application:
+    name: gateway
+  zipkin:
+    base-url: http://localhost:9000
+  sleuth:
+    sampler:
+      probability: 1.0
   cloud:
     gateway:
       routes:
@@ -31,19 +38,28 @@ spring:
 #          predicates:
 #            - Method=GET
         # 请求路径匹配
-#        - id: path_route
-#          uri: http://ityouknow.com
-#          predicates:
+        - id: path_route
+          uri: lb://server01
+          predicates:
+            - Path=/user
 #            - Path=/foo/{segment} # 如：/foo/123, /foo/abc
         # 请求参数匹配
-#        - id: query_route
-#          uri: http://ityouknow.com
-#          predicates:
-#            - Query=abc # 请求参数中带有abc即可，如：http://localhost:8080?abc=111
+        - id: query_route
+          uri: lb://zipkin
+          predicates:
+            - Query=zipkin # 请求参数中带有abc即可，如：http://localhost:8080?abc=111
 #            - Query=abc, 123 # 参数名为abc，参数值为123，如：http://localhost:8080?abc=123
 #            - Query=abc, do. # 参数值支持正则表达式，如：http://localhost:8080?abc=dog
         # ip 匹配
-        - id: remoteAddr_route
-          uri: http://ityouknow.com
-          predicates:
-            - RemoteAddr=192.168.3.79 # 本机ip为192.168.3.79
+#        - id: remoteAddr_route
+#          uri: http://ityouknow.com
+#          predicates:
+#            - RemoteAddr=192.168.3.79 # 本机ip为192.168.3.79
+
+eureka:
+  instance:
+    preferIpAddress: true # 访问路径是否显示IP
+    instance-id: ${spring.application.name}-${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka  # 注册中心 eureka 访问地址
